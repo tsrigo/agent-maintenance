@@ -39,6 +39,8 @@ flowchart TB
 
 ## 本地准备
 
+仅需在自己的 Codex 新对话中使用六项 Skill 和协作习惯时，按[全局接入](docs/codex-global.md)运行独立安装入口。技能与习惯保留在本仓维护，已有全局和项目 `AGENTS.md` 保持原样；无需安装下述完整开发工具链。
+
 需要 Python 3.10+、Node 22.12+ 和 Git。Python 直接依赖钉在 `requirements-dev.txt`，传递依赖与哈希归 `requirements-dev.lock`，npm 工具归 `package.json` 与锁文件。系统工具使用已有包管理器；本机有 Homebrew 时执行：
 
 ```sh

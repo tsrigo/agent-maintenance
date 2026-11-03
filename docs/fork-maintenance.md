@@ -11,6 +11,8 @@
 
 向已有项目接入时，先读目标规则，选择 Skill 及其引用文件，修复相对链接，并复用现有验证。不整份覆盖目标 `AGENTS.md`，不复制本仓的过程 Notes、个人原始记录或项目专属运行配置。安装位置与宿主发现方式按实际环境验证；仓库内有文件不代表当前 Agent 已加载。
 
+维护者自己的 Codex 可按[全局接入](codex-global.md)使用仓库中的六项 Skill 和协作习惯。该入口以软链接和附加配置保持单一来源，保留已有全局与项目 `AGENTS.md`；其他使用者仍自行选择个人习惯。
+
 ## WncFht 上游
 
 fork 起点为 [WncFht/agent-maintenance @ 527af880](https://github.com/WncFht/agent-maintenance/tree/527af880f6feb0e352cae42b2c7601dc443b2b70)。原规则、工具链与预览资源的来源继续见[来源与取舍](../来源与取舍.md)，保留原有 MIT 许可。

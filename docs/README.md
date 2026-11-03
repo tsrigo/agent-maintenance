@@ -6,6 +6,7 @@
 | ------------------------------------- | ----------------------------------------------------------- |
 | 采用维护包、选择能力和运行检查        | [根 README](../README.md)                                   |
 | 采用个人 fork、选择协作习惯与跟进上游 | [通用维护说明](fork-maintenance.md)                         |
+| 为自己的 Codex 新对话接入技能与习惯   | [全局接入](codex-global.md)                                 |
 | 组织文档、从需求交付到当前说明        | [开发工作流](workflow.md)                                   |
 | 接入 formatter、hooks、CI 和预览      | [工具链](toolchain.md)                                      |
 | 使用主题、图表查看器和独立导出        | [Crossnote 资源说明](../assets/.crossnote/README.md)        |
