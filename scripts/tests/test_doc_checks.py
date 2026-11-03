@@ -74,7 +74,14 @@ class DocumentChecksTests(unittest.TestCase):
             self.assertTrue(check_budgets(self.root, [self.page])[0])
 
     def test_real_checker_rejects_bad_fragment_and_hard_budget(self):
-        for name in ("maintain-docs", "maintain-prose", "maintain-decision-notes"):
+        for name in (
+            "maintain-docs",
+            "maintain-prose",
+            "maintain-decision-notes",
+            "review-code",
+            "find-simplifications",
+            "pre-delivery-checks",
+        ):
             folder = self.root / ".agents/skills" / name
             (folder / "agents").mkdir(parents=True)
             (folder / "SKILL.md").write_text(

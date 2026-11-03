@@ -1,6 +1,8 @@
 # AGENTS.md
 
-本仓通过维护技能、开发工具链和可选预览资源改善 Agent 开发体验，以较低维护成本减少仓库中的冗余、失真和缺少验证的内容。说明当前用途与使用方法；来源归属和必要决策理由分别放在来源说明与 Notes，已完成的操作步骤不进入使用文档。
+本仓维护可跨项目采用的文档、代码审查、简化与验证选择方法，以及可选工具链和预览资源。fork 范围和上游来源见[维护说明](docs/fork-maintenance.md)。维护本 fork 时读取[协作习惯](.agents/profiles/personal.md)；向其他项目迁移时按当前使用者要求选用。
+
+说明当前用途与使用方法；来源归属和必要决策理由分别放在来源说明与 Notes，已完成的操作步骤不进入使用文档。
 
 先读本仓架构、开发与测试入口，再修改对应区域。子目录指令只补充其作用范围；不复制父层规则。指令加载取决于工具，进入未加载的目录前显式读取其入口。
 
@@ -16,6 +18,8 @@
 - 失败后明确状态、清理和报告的责任；捕获异常不意味着已恢复。资源清理停止新工作，等待已有工作结束，再释放依赖。
 
 ## 入口
+
+审查代码用 [review-code](.agents/skills/review-code/SKILL.md)，寻找或落实简化用 [find-simplifications](.agents/skills/find-simplifications/SKILL.md)，提交、推送或交付前用 [pre-delivery-checks](.agents/skills/pre-delivery-checks/SKILL.md)选择相关验证。普通修改不要求把全部 Skill 执行一遍。
 
 [文档](docs/AGENTS.md)、[脚本](scripts/AGENTS.md)、[CI](.github/AGENTS.md)、[维护方法](.agents/references/automation.md)。
 

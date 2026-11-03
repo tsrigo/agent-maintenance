@@ -1,0 +1,3 @@
+interface:
+  display_name: "交付前检查"
+  short_description: "按实际改动选择最小有效验证，保护工作区并核对提交、远端与交付状态。"

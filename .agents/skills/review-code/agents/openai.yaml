@@ -1,0 +1,3 @@
+interface:
+  display_name: "审查代码"
+  short_description: "沿真实入口审查代码、提交与 PR，核对接口、失败路径和验证证据。"

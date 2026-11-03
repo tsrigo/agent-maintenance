@@ -13,6 +13,9 @@ SKILLS = {
     "maintain-docs",
     "maintain-prose",
     "maintain-decision-notes",
+    "review-code",
+    "find-simplifications",
+    "pre-delivery-checks",
 }
 IGNORED = {
     ".git",

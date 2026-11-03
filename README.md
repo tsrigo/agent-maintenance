@@ -1,4 +1,6 @@
-# agent-maintenance：Agent 开发体验与 de-slop
+# agent-maintenance：通用 Agent 工程维护
+
+这是 [tsrigo 维护的 fork](https://github.com/tsrigo/agent-maintenance)，基于 [WncFht/agent-maintenance](https://github.com/WncFht/agent-maintenance)。保留上游文档规则与工具链，补充 DeepSeek Harness 的通用审查、简化和验证选择方法，并提供可选的[协作习惯](.agents/profiles/personal.md)。采用范围、来源版本与更新方式见[维护说明](docs/fork-maintenance.md)。
 
 agent-maintenance 为已有 Git 项目提供维护规则、开发工具链和可选 Markdown 预览资源，改善 Agent 开发中的阅读、修改和验证体验。目标是以较低的接入和日常维护成本，减少仓库中的 slop：重复空泛的文字、与实现脱节的说明、无法独立理解的会话残留，以及缺少验证的配置和改动。
 
@@ -10,7 +12,7 @@ agent-maintenance 为已有 Git 项目提供维护规则、开发工具链和可
 
 ```mermaid
 flowchart TB
-    Package["agent-maintenance"] --> Rules["维护规则<br/>三个技能、共享参考、模板与 Agent Notes"]
+    Package["agent-maintenance"] --> Rules["维护规则<br/>六个技能、共享参考、模板与 Agent Notes"]
     Package --> Tools["工具链接入<br/>format、lint、两阶段 hook 与 CI"]
     Package --> Preview["可选 MPE 预览<br/>assets/.crossnote 与资源测试"]
     Rules -->|"合并规则与引用"| Project["目标项目<br/>保留已有构建入口与产品测试"]
@@ -20,15 +22,18 @@ flowchart TB
 
 工具链已验证 Python、Shell、Markdown、YAML、JSON/JSONC、TOML 和 GitHub Actions 的接入。Ruff、Prettier、Taplo 与 shfmt 分别负责对应语法的布局；AutoCorrect 检查正文、代码注释与字符串，自动修复仅用于 Markdown。语义敏感的字符串需审阅并使用有理由的局部豁免，工具职责、扫描范围、版本基线和升级方法见[工具链指南](docs/toolchain.md)。
 
-## 三个技能入口
+## 技能入口
 
 | 技能                                                                       | 用途                                   |
 | -------------------------------------------------------------------------- | -------------------------------------- |
 | [maintain-docs](.agents/skills/maintain-docs/SKILL.md)                     | 文档归位、事实核验、实现同步和迁移说明 |
 | [maintain-prose](.agents/skills/maintain-prose/SKILL.md)                   | 文字与注释的完整语义、会话残留清理     |
 | [maintain-decision-notes](.agents/skills/maintain-decision-notes/SKILL.md) | 决策记录、取代、合并和冻结历史         |
+| [review-code](.agents/skills/review-code/SKILL.md)                         | 沿真实入口审查接口、失败路径与行为证据 |
+| [find-simplifications](.agents/skills/find-simplifications/SKILL.md)       | 用消费者与维护成本判断简化             |
+| [pre-delivery-checks](.agents/skills/pre-delivery-checks/SKILL.md)         | 按实际改动选择验证并核对交付版本       |
 
-三个技能共用文档、文字与决策维护参考；研究项目可按需采用简短的实验记录规则；正文结构由实际材料决定。文档布局、创建门槛与交付步骤见[开发工作流](docs/workflow.md)，目录入口见[文档导航](docs/README.md)。采用时连同技能引用的文件一起复制。产品代码审阅和业务测试沿用目标项目的规范。
+技能按任务选用，相关引用一起复制；研究项目可按需采用[实验记录规则](.agents/references/experiment-reports.md)。文档布局、创建门槛与交付步骤见[开发工作流](docs/workflow.md)，目录入口见[文档导航](docs/README.md)。通用审查与验证选择使用目标项目的实际命令和规范，业务测试、类型检查及发布产物验证仍由目标项目负责。
 
 `AGENTS.md` 与 `.agents/` 为规则事实源。docs、scripts、.github 与 Notes 的分层入口表达不同区域的职责；不预设产品源码或基准目录。采用时只选择目标项目存在的区域，并修复相对链接。
 
@@ -95,12 +100,12 @@ node assets/.crossnote/scripts/sync.cjs --target /absolute/project --check
 给 Agent 的接入提示词（替换两个路径）：
 
 ```text
-参考 <维护包路径> 的 README 和 docs/toolchain.md，为 <目标仓库路径> 接入适用的维护规则与工具链。先读目标现状，按需采用三个技能及其引用、共享参考、模板、Agent Notes 规则和分层 AGENTS.md；在目标 docs/AGENTS.md 明确实际内容归属，在 docs/README.md 建立阅读入口，按需采用实验记录规则和文档检查清单，不做重复检测；按真实语言范围合并 formatter、lint、两阶段 hooks 和 CI，复用已有构建与检查入口。依赖归目标项目与锁文件，不覆盖现有规则，不复制本包的过程记录。需要 MPE 时再采用预览资源与同步入口。保留来源与许可，修复引用，验证正常与违规输入、真实部分暂存和失败传播。仅配置必要 CI，不新增自动发布；完成后说明改动与未验证项。
+参考 <维护包路径> 的 README 和 docs/fork-maintenance.md，为 <目标仓库路径> 接入适用的维护规则。先读目标现状，按需采用技能及其引用、共享参考、模板、Agent Notes 规则和分层 AGENTS.md；在目标 docs/AGENTS.md 明确实际内容归属，在 docs/README.md 建立阅读入口，按需采用实验记录规则和文档检查清单，不做重复检测。协作习惯只合并当前使用者选择的条目。需要工具链时再读 docs/toolchain.md，按真实语言范围合并 formatter、lint、两阶段 hooks 和 CI，复用已有构建与检查入口。依赖归目标项目与锁文件，不覆盖现有规则，不复制本包的过程记录。需要 MPE 时再采用预览资源与同步入口。保留来源与许可，修复引用，按改动验证；涉及 hooks 时验证真实部分暂存和失败传播。仅配置必要 CI，不新增自动发布；完成后说明改动与未验证项。
 ```
 
-先核对目标项目已有规则与工具链，按需复制三个技能及其引用的 references、templates 和 notes 规则；不能只复制单个 SKILL.md。保留许可和来源，按真实目录调整入口。
+先核对目标项目已有规则与工具链，按需复制选用技能及其引用的 references、templates 和 notes 规则；不能只复制单个 SKILL.md。保留许可和来源，按真实目录调整入口。
 
-已有 hooks、CI、formatter 和调度器优先复用。`scripts/checks.json` 是本包的检查集合，迁移时逐项核对；`check_docs.py` 中的三技能集合是本仓约束，其他项目应明确自己的集合。产品测试、类型、真实构建与生成器检查需接入目标项目，不能用本包检查代替。
+已有 hooks、CI、formatter 和调度器优先复用。`scripts/checks.json` 是本包的检查集合，迁移时逐项核对；`check_docs.py` 中的六技能集合是本仓约束，其他项目应明确自己的集合。产品测试、类型、真实构建与生成器检查需接入目标项目，不能用本包检查代替。
 
 本仓提供检查工作流，不提供部署或发布流程；远端执行与 required checks 需在目标托管平台单独核验。
 
